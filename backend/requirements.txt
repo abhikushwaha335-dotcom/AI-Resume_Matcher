@@ -5,3 +5,4 @@ spacy
 sentence-transformers
 pymupdf
 scikit-learn
+python-dotenv
