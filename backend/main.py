@@ -56,14 +56,13 @@ async def analyze_resume(file: UploadFile = File(...), jd: str = Form(...)):
         "suggestions": suggestions
     }
 
-from fastapi import FastAPI
+
 import os
 import uvicorn
 
-app = FastAPI()
 
 @app.get("/")
-def read_root():
+def root():
     return {"status": "Backend running"}
 
 if __name__ == "__main__":
