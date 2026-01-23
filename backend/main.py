@@ -3,8 +3,19 @@ from fastapi.middleware.cors import CORSMiddleware
 import fitz  # PyMuPDF
 import spacy
 from sentence_transformers import SentenceTransformer, util
+import os
+import uvicorn
+
 
 app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"status": "Backend running"}
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
 
 app.add_middleware(
     CORSMiddleware,
@@ -57,14 +68,5 @@ async def analyze_resume(file: UploadFile = File(...), jd: str = Form(...)):
     }
 
 
-import os
-import uvicorn
 
 
-@app.get("/")
-def root():
-    return {"status": "Backend running"}
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
